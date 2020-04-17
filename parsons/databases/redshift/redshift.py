@@ -457,6 +457,9 @@ class Redshift(RedshiftCreateTable, RedshiftCopyTable, RedshiftTableUtilities, R
         # Specify the columns for a copy statement.
         if specifycols or (specifycols is None and template_table):
             cols = tbl.columns
+            raw_cols = f"{''.join(cols)}"
+            if raw_cols == '':
+                cols = None
         else:
             cols = None
 
